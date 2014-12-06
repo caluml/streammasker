@@ -9,15 +9,16 @@ I wondered if it would be possible to write wrappers for Java's Input/OutputStre
 
 This is my attempt at it.
 
-To wrap an InputStream<br>
-`MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);`<br>
-`new Thread(maskingInputStream).start();`
-
 To wrap an OutputStream (sending 10 bytes (8 + 2) every 250 milliseconds)<br>
 `MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);`<br>
 `new Thread(maskingOutputStream).start();`
 
+To wrap an InputStream<br>
+`MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);`<br>
+`new Thread(maskingInputStream).start();`
+
 Notes
 * There are a SimpleMessageServer and SimpleMessageClient to get an idea of how to use this.
 * Not all methods in MaskingInputStream have been overridden yet.
-* Without encryption, this is pretty pointless
+* Without encryption, this is pretty pointless, as it's trivial to see the data being sent/not being sent.
+* This effectively limits and uses/wastes a fixed amount of bandwidth
