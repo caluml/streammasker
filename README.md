@@ -10,11 +10,11 @@ I wondered if it would be possible to write wrappers for Java's Input/OutputStre
 This is my attempt at it.
 
 To wrap an InputStream<br>
-`MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);`
+`MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);`<br>
 `new Thread(maskingInputStream).start();`
 
 To wrap an OutputStream<br>
-`MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);`
+`MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);`<br>
 `new Thread(maskingOutputStream).start();`
 
 * There are a SimpleMessageServer and SimpleMessageClient to get an idea of how to use this.
