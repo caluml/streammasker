@@ -11,7 +11,7 @@ public class MaskingInputStream extends InputStream implements Runnable {
 
     private final InputStream inputStream;
     private final int size;
-    private volatile boolean running = false;
+    private volatile boolean running;
 
     public MaskingInputStream(final InputStream inputStream, final int size) {
         this.inputStream = inputStream;
@@ -70,6 +70,9 @@ public class MaskingInputStream extends InputStream implements Runnable {
 
     @Override
     public int read(final byte[] b, final int off, final int len) throws IOException {
+        if (!running) {
+            throw new IllegalArgumentException("MaskingInputStream is not running as a thread");
+        }
         // block until we can read data.
         while (queue.isEmpty()) {
             try {

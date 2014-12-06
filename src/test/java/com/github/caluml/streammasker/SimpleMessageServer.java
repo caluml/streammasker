@@ -21,6 +21,7 @@ public class SimpleMessageServer {
 
         final MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);
         new Thread(maskingInputStream).start();
+        Thread.sleep(100); // allow running to be set to true
 
         final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(maskingInputStream));
         String line;

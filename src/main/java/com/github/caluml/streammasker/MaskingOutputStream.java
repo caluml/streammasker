@@ -20,7 +20,6 @@ public class MaskingOutputStream extends OutputStream implements Runnable {
     private volatile boolean running;
     private volatile boolean debug;
 
-
     /**
      * OutputStream that sends real data, or junk data if there is no real data at random intervals.
      * Is only useful if it is sent over an encrypted link, which is not handled by this class.

@@ -28,7 +28,7 @@ public class SimpleMessageClient {
             line = bufferedReader.readLine();
             bufferedWriter.write(line + "\n");
             bufferedWriter.flush();
-            System.out.println("Client: Wrote: " + line);
+            System.out.println("Server: Wrote " + line.length() + " bytes: " + line);
         } while (line != null);
     }
 
