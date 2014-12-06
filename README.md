@@ -1,7 +1,7 @@
 streammasker
 ============
 
-https://en.wikipedia.org/wiki/Numbers_station s are interesting.
+https://en.wikipedia.org/wiki/Numbers_stations are interesting.
 They are widely believed to be the way spies are sent their instructions.
 They broadcast numbers all the time whether there are instructions in it or not. This means it's impossible to know when real data is being sent.
 
