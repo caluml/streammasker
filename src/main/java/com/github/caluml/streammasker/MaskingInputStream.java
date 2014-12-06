@@ -7,10 +7,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MaskingInputStream extends InputStream implements Runnable {
 
-    private Queue<Byte> queue = new ConcurrentLinkedQueue<Byte>();
+    private final Queue<Byte> queue = new ConcurrentLinkedQueue<Byte>();
 
-    private InputStream inputStream;
-    private int size;
+    private final InputStream inputStream;
+    private final int size;
     private volatile boolean running = false;
 
     public MaskingInputStream(final InputStream inputStream, final int size) {
