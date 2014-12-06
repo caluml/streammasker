@@ -13,10 +13,11 @@ To wrap an InputStream<br>
 `MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);`<br>
 `new Thread(maskingInputStream).start();`
 
-To wrap an OutputStream<br>
+To wrap an OutputStream (sending 10 bytes (8 + 2) every 250 milliseconds)<br>
 `MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);`<br>
 `new Thread(maskingOutputStream).start();`
 
+Notes
 * There are a SimpleMessageServer and SimpleMessageClient to get an idea of how to use this.
 * Not all methods in MaskingInputStream have been overridden yet.
 * Without encryption, this is pretty pointless
