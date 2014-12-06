@@ -9,11 +9,11 @@ I wondered if it would be possible to write wrappers for Java's Input/OutputStre
 
 This is my attempt at it.
 
-To wrap an InputStream
+To wrap an InputStream<br>
 `MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);
 new Thread(maskingInputStream).start();`
 
-To wrap an OutputStream
+To wrap an OutputStream<br>
 `MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);
 new Thread(maskingOutputStream).start();`
 
