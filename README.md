@@ -5,7 +5,7 @@ https://en.wikipedia.org/wiki/Numbers_stations are interesting.
 They are widely believed to be the way spies are sent their instructions.
 They broadcast numbers all the time whether there are instructions in it or not. This means it's impossible to know when real data is being sent.
 
-This is my attempt at writing wrappers for Java's Input/OutputStreams that essentially hide whether any data is being sent or not. They work by sending dummy or real data at regular intervals.
+This is my attempt at writing wrappers for Java's Input/OutputStreams that essentially prevent someone viewing network traffic from knowing whether any information is being sent or not.
 
 To wrap an OutputStream (sending 10 bytes (8 + 2) every 250 milliseconds)<br>
 `MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);`<br>
@@ -16,7 +16,7 @@ To wrap an InputStream<br>
 `new Thread(maskingInputStream).start();`
 
 Notes
-* There are a SimpleMessageServer and SimpleMessageClient to get an idea of how to use this.
+* There are a SimpleMessageServer and SimpleMessageClient to get an idea of how to use this. `tcpdump -X -npi any tcp dst port 7733` will show you the traffic.
 * Not all methods in MaskingInputStream have been overridden yet.
 * Without encryption, this is pretty pointless, as it's trivial to see the data being sent/not being sent.
 * This effectively limits and uses/wastes a fixed amount of bandwidth
