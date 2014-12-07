@@ -5,9 +5,7 @@ https://en.wikipedia.org/wiki/Numbers_stations are interesting.
 They are widely believed to be the way spies are sent their instructions.
 They broadcast numbers all the time whether there are instructions in it or not. This means it's impossible to know when real data is being sent.
 
-I wondered if it would be possible to write wrappers for Java's Input/OutputStreams that sent data at a constant rate, whether or not there was any real information to send.
-
-This is my attempt at it.
+This is my attempt at it writing wrappers for Java's Input/OutputStreams that essentially hide whether any data is being sent or not. They work by sending dummy or real data at regular intervals.
 
 To wrap an OutputStream (sending 10 bytes (8 + 2) every 250 milliseconds)<br>
 `MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);`<br>
