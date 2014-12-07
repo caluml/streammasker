@@ -22,3 +22,4 @@ Notes
 * Not all methods in MaskingInputStream have been overridden yet.
 * Without encryption, this is pretty pointless, as it's trivial to see the data being sent/not being sent.
 * This effectively limits and uses/wastes a fixed amount of bandwidth
+* It sends random data to mitigate against https://en.wikipedia.org/wiki/Known-plaintext_attack. (I don't know if it's actually necessary these days with modern ciphers like AES)
