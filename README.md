@@ -11,11 +11,14 @@ This is my attempt at writing wrappers for Java's Input/OutputStreams that essen
 ### How to use
 Both wrappers need to run in threads to be able to send fake data when there is no real data to be sent.<br>
 To wrap an OutputStream (sending 10 bytes (8 + 2) every 250 milliseconds)
-```MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);
+```
+MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);
 new Thread(maskingOutputStream).start();
 ```
+
 To wrap an InputStream
-```MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);
+```
+MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);
 new Thread(maskingInputStream).start();
 ```
 
