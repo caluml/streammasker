@@ -9,7 +9,8 @@ They broadcast numbers all the time whether there are instructions in it or not.
 This is my attempt at writing wrappers for Java's Input/OutputStreams that essentially prevent someone viewing network traffic from knowing whether any information is being sent or not.
 
 ### How to use
-To wrap an OutputStream (sending 10 bytes (8 + 2) every 250 milliseconds)<br>
+Both wrappers need to run in threads to be able to send fake data when there is no real data to be sent.<br>
+To wrap an OutputStream (sending 10 bytes (8 + 2) every 250 milliseconds)
 ```MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);
 new Thread(maskingOutputStream).start();
 ```
