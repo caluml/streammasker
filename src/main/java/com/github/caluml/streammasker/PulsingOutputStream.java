@@ -92,15 +92,15 @@ public class PulsingOutputStream extends OutputStream implements Runnable {
 		}
 
 		int i;
-		for (i = 2; i < pulseSize + 2; i++) {
+		for (i = 0; i < pulseSize; i++) {
 			Byte b = queue.poll();
 			if (b == null) {
 				break;
 			}
-			pulse[i] = b;
-			logger.debug("Set pulse[{}] to {}", i, b);
+			pulse[i + 2] = b;
+			logger.debug("Set pulse[{}] to {}", i + 2, b);
 		}
-		setPulseLength(pulse, i - 2);
+		setPulseLength(pulse, i);
 
 		return pulse;
 	}
