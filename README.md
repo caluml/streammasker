@@ -16,19 +16,19 @@ This is my attempt at writing wrappers for Java's Input/OutputStreams that essen
 Both wrappers need to run in threads to be able to send fake data when there is no real data to be sent.<br>
 To wrap an OutputStream (sending 10 bytes (8 + 2) every 250 milliseconds)
 ```java
-MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);
-new Thread(maskingOutputStream).start();
+PulsingOutputStream pulsingOutputStream = new PulsingOutputStream(outputStream, 8, new SecureRandom(), 250, TimeUnit.MILLISECONDS);
+new Thread(pulsingOutputStream).start();
 ```
 
 To wrap an InputStream
 ```java
-MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);
-new Thread(maskingInputStream).start();
+PulsingInputStream pulsingInputStream = new PulsingInputStream(inputStream, 8);
+new Thread(pulsingInputStream).start();
 ```
 
 ### Notes
 * There are a SimpleMessageServer and SimpleMessageClient to get an idea of how to use this. `tcpdump -X -npi any tcp dst port 7733` will show you the traffic. There are a couple of scripts to run the example server and client.
-* Not all methods in MaskingInputStream have been overridden yet.
+* Not all methods in PulsingInputStream have been overridden yet.
 * Without encryption, this is pretty pointless, as it's trivial to see the data being sent/not being sent. Encryption isn't part of this library though.
 * streammasker effectively limits and uses/wastes a fixed amount of bandwidth.
 * It sends random data to mitigate against https://en.wikipedia.org/wiki/Known-plaintext_attack. (I don't know if it's actually necessary these days with modern ciphers like AES)
@@ -43,11 +43,11 @@ Yes. It wastes bandwidth, and is slower than a simple connection. However, it pr
 SSLServerSocketFactory ssf = sslContext.getServerSocketFactory();
 SSLServerSocket serverSocket = (SSLServerSocket) ssf.createServerSocket(SERVER_PORT);
 SSLSocket clientSocket = (SSLSocket) serverSocket.accept();
-OutputStream outputStream = new MaskingOutputStream(clientSocket.getOutputStream(), ...);
+OutputStream outputStream = new PulsingOutputStream(clientSocket.getOutputStream(), ...);
 ```
 ```java
 // SSL Client
 SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(SERVER_HOST, SERVER_PORT);
-InputStream inputStream = new MaskingInputStream(socket.getInputStream(), ...);
+InputStream inputStream = new PulsingInputStream(socket.getInputStream(), ...);
 ```
 Then read/write to the streams as normal.

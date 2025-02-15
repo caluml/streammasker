@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Simple message server. Wraps a standard network socket in the MaskingInputStream, and reads lines from that.
+ * Simple message server. Wraps a standard network socket in the {@link PulsingInputStream}, and reads lines from that.
  */
 public class SimpleMessageServer {
 
@@ -19,11 +19,11 @@ public class SimpleMessageServer {
 		System.out.println("Server: Accepted connection from " + socket.getRemoteSocketAddress());
 		final InputStream inputStream = socket.getInputStream();
 
-		final MaskingInputStream maskingInputStream = new MaskingInputStream(inputStream, 8);
-		new Thread(maskingInputStream).start();
+		final PulsingInputStream pulsingInputStream = new PulsingInputStream(inputStream, 8);
+		new Thread(pulsingInputStream).start();
 		Thread.sleep(100); // allow running to be set to true
 
-		final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(maskingInputStream));
+		final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(pulsingInputStream));
 		String line;
 		do {
 			line = bufferedReader.readLine();

@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class MaskingInputStream extends InputStream implements Runnable {
+public class PulsingInputStream extends InputStream implements Runnable {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -19,7 +19,7 @@ public class MaskingInputStream extends InputStream implements Runnable {
 
 	private volatile boolean running;
 
-	public MaskingInputStream(final InputStream inputStream,
+	public PulsingInputStream(final InputStream inputStream,
 														final int pulseSize) {
 		this.inputStream = inputStream;
 		this.pulseSize = pulseSize;

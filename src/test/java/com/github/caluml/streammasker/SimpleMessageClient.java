@@ -6,7 +6,7 @@ import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Simple message client. Reads from stdin, and writes to the MaskingOutputStream.
+ * Simple message client. Reads from stdin, and writes to the {@link PulsingOutputStream}
  */
 public class SimpleMessageClient {
 
@@ -16,10 +16,10 @@ public class SimpleMessageClient {
 		System.out.println("Client: Opened socket to " + socket.getRemoteSocketAddress());
 		final OutputStream outputStream = socket.getOutputStream();
 
-		final MaskingOutputStream maskingOutputStream = new MaskingOutputStream(outputStream, 8, new SecureRandom(), 1000, TimeUnit.MILLISECONDS);
-		new Thread(maskingOutputStream).start();
+		final PulsingOutputStream pulsingOutputStream = new PulsingOutputStream(outputStream, 8, new SecureRandom(), 1000, TimeUnit.MILLISECONDS);
+		new Thread(pulsingOutputStream).start();
 
-		final BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(maskingOutputStream));
+		final BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(pulsingOutputStream));
 
 		final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Client: Waiting for input");

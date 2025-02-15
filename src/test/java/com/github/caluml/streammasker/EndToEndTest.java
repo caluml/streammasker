@@ -20,11 +20,11 @@ public class EndToEndTest {
 		byte[] payload = random(7);
 		InputOutputStreamConnector connector = new InputOutputStreamConnector();
 
-		MaskingOutputStream output = new MaskingOutputStream(connector.getOutputStream(), pulseSize, random, 10, MILLISECONDS);
+		PulsingOutputStream output = new PulsingOutputStream(connector.getOutputStream(), pulseSize, random, 10, MILLISECONDS);
 		Thread outputThread = new Thread(output);
 		outputThread.start();
 
-		MaskingInputStream input = new MaskingInputStream(connector.getInputStream(), pulseSize);
+		PulsingInputStream input = new PulsingInputStream(connector.getInputStream(), pulseSize);
 		Thread inputThread = new Thread(input);
 		inputThread.start();
 

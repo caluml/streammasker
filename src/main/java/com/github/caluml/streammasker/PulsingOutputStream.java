@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 
-public class MaskingOutputStream extends OutputStream implements Runnable {
+public class PulsingOutputStream extends OutputStream implements Runnable {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -35,7 +35,7 @@ public class MaskingOutputStream extends OutputStream implements Runnable {
 	 * @param pulseSize    the number of bytes that are sent in each pulse.
 	 * @param random       the {@link Random} to use
 	 */
-	public MaskingOutputStream(OutputStream outputStream,
+	public PulsingOutputStream(OutputStream outputStream,
 														 int pulseSize,
 														 Random random,
 														 int units,
